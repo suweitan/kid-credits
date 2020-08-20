@@ -1,0 +1,27 @@
+{
+  "name": "kid-credits",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "firebase": "firebase deploy --only hosting"
+  },
+  "dependencies": {
+    "@tailwindcss/ui": "^0.5.0",
+    "firebase": "^7.18.0",
+    "nuxt": "^2.14.0",
+    "tailwindcss": "^1.6.2",
+    "tailwindcss-dark-mode": "^1.1.6",
+    "uuid": "^8.3.0",
+    "vue-loading-spinner": "^1.0.11",
+    "vue-tailwind-modal": "^1.0.1",
+    "vuelidate": "^0.7.5"
+  },
+  "devDependencies": {
+    "@nuxtjs/color-mode": "^1.0.3",
+    "@nuxtjs/tailwindcss": "^2.1.0"
+  }
+}
