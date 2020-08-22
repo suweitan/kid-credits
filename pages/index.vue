@@ -19,7 +19,7 @@
             </div>
 
             <div class="flex-1 py-2 flex flex-col justify-center">
-              <p class="text-center font-semibold text-lg">{{ k.name }}</p>
+              <p class="text-center leading-tight font-semibold text-lg">{{ k.name }}</p>
               <p class="leading-none text-5xl sm:text-6xl font-bold text-center">{{ k.currCredit }}</p>
               <p class="text-center font-normal text-base text-white text-opacity-75">points</p>
             </div>
@@ -82,7 +82,7 @@
               :class="selectedCreditTypeClass"
               @click="selectedCredit = c"
               class="mb-3 px-4 py-2 cursor-pointer font-medium text-white rounded-lg flex items-center justify-between">
-              <span class="flex-1 flex items-center">
+              <span class="flex-1 flex items-center leading-tight">
                 <svg v-if="selectedCredit && selectedCredit.id === c.id" class="mr-2" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>o-check</title><g stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"><polygon fill="none" stroke="currentColor" stroke-miterlimit="10" points="4,30 10,24 24,34 54,10 60,14 24,52 "></polygon></g></svg>
                 {{ c.name }}
               </span>
