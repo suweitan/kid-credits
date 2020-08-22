@@ -36,6 +36,13 @@ export default {
       credit: 10,
     },
     {
+      id: 'tell_lies',
+      name: 'Tell lies',
+      sign: -1,
+      type: 'deduct',
+      credit: 5,
+    },
+    {
       id: 'disobey_parents',
       name: 'Disobey parents',
       sign: -1,
@@ -62,6 +69,13 @@ export default {
       sign: -1,
       type: 'deduct',
       credit: 5,
+    },
+    {
+      id: 'being_difficult',
+      name: 'Being difficult',
+      sign: -1,
+      type: 'deduct',
+      credit: 3,
     },
     {
       id: 'play_game_extended',
