@@ -75,8 +75,8 @@
               <div class="mt-1 text-sm font-medium leading-none text-white">{{ user ? user.email : '' }}</div>
             </div>
           </div> -->
-          <div class="mt-3 px-2">
-            <span @click="logout" class="mt-1 block cursor-pointer px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-indigo-800 focus:outline-none focus:text-white focus:bg-indigo-700">Sign out</span>
+          <div @click="logout" class="mt-3 px-2">
+            <span class="mt-1 block cursor-pointer px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-indigo-800 focus:outline-none focus:text-white focus:bg-indigo-700">Sign out</span>
           </div>
         </div>
       </div>
