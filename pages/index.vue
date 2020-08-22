@@ -52,7 +52,7 @@
       :showClose="true"
       :fullScreen="true"
     >
-      <div class="h-full mt-5 pt-5 pb-20 px-3 sm:px-5 flex flex-col">
+      <div class="h-full mt-5 pt-5 pb-32 sm:pb-10 px-3 sm:px-5 flex flex-col">
         <div v-if="! loading && selectedKid" class="mb-8 w-100 flex items-center justify-center">
           <div class="w-24 h-24 bg-gray-400 text-white rounded-lg flex items-center justify-center">
             <span class="text-4xl font-bold">{{ selectedKid.currCredit }}</span>
@@ -75,6 +75,15 @@
             <span class="capitalize">{{ selectedKidName }}</span> wants to use some credits. 
           </p>
         </div>
+        <div v-if="selectedCredit" class="my-5 flex items-center justify-center">
+          <button @click.prevent="updateCredit()" class="w-full bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-full focus:outline-none focus:shadow-outline text-center inline-flex items-center justify-center" type="button">
+            <svg v-if="loading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            UPDATE
+          </button>
+        </div>
 
         <div class="flex-1 overflow-auto">
           <div v-for="(c,index) in credits" :key="index">
@@ -89,15 +98,6 @@
               </span>
               <span class="w-1/6 text-2xl font-bold text-right">{{ c.sign * c.credit }}</span>
             </div>
-          </div>
-          <div v-if="selectedCredit" class="mt-8 flex items-center justify-center">
-            <button @click.prevent="updateCredit()" class="w-full bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-full focus:outline-none focus:shadow-outline text-center inline-flex items-center justify-center" type="button">
-              <svg v-if="loading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              UPDATE
-            </button>
           </div>
         </div>
       </div>
