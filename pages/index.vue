@@ -52,7 +52,7 @@
       :showClose="true"
       :fullScreen="true"
     >
-      <div class="h-full mt-5 py-5 px-3 sm:px-5 flex flex-col">
+      <div class="h-full mt-5 pt-5 pb-20 px-3 sm:px-5 flex flex-col">
         <div v-if="! loading && selectedKid" class="mb-8 w-100 flex items-center justify-center">
           <div class="w-24 h-24 bg-gray-400 text-white rounded-lg flex items-center justify-center">
             <span class="text-4xl font-bold">{{ selectedKid.currCredit }}</span>
