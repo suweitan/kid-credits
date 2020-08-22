@@ -6,7 +6,8 @@
 			@click.self="closeIfShown"
 		>
 			<div
-				class="relative mx-5 my-5 max-h-screen w-11/12 max-w-2xl bg-white shadow-lg rounded-lg p-8 flex"
+				:class="fullScreen ? 'h-full w-full p-5 overflow-hidden' : 'p-8 max-w-2xl rounded-lg'"
+				class="relative max-h-screen bg-white shadow-lg flex"
 			>
 				<button
 					v-if="showClose"
@@ -18,7 +19,7 @@
 					  <svg class="fill-current" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>e-remove</title><g><polygon points="49.678 10.08 32 27.758 14.322 10.08 10.08 14.322 27.758 32 10.08 49.678 14.322 53.92 32 36.242 49.678 53.92 53.92 49.678 36.242 32 53.92 14.322 49.678 10.08"></polygon></g></svg>
           </div>
 				</button>
-				<div class="overflow-auto max-h-screen w-full">
+				<div class="max-h-screen w-full">
 					<slot />
 				</div>
 			</div>
@@ -36,6 +37,10 @@
 			showClose: {
 				type: Boolean,
 				default: true
+			},
+			fullScreen: {
+				type: Boolean,
+				default: false
 			}
 		},
 		watch: {
