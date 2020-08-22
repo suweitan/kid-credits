@@ -94,61 +94,73 @@ export default {
   creatures: [
     {
       id: 'molo',
+      filename: 'molo.png',
       name: 'Molo',
       path: require('~/assets/img/tolos/molo.png')
     },
     {
       id: 'bubble',
+      filename: 'bubble.png',
       name: 'Bubble',
       path: require('~/assets/img/tolos/bubble.png')
     },
     {
-      id: 'candy_moster',
+      id: 'candy_monster',
+      filename: 'candy_monster.png',
       name: 'Candy Monster',
       path: require('~/assets/img/tolos/candy_monster.png')
     },
     {
       id: 'catrox',
+      filename: 'catrox.png',
       name: 'Catrox',
       path: require('~/assets/img/tolos/catrox.png')
     },
     {
       id: 'loop',
+      filename: 'loop.png',
       name: 'Loop',
       path: require('~/assets/img/tolos/loop.png')
     },
     {
       id: 'lumpy_pudding',
+      filename: 'lumpy_pudding.png',
       name: 'Lumpy Pudding',
       path: require('~/assets/img/tolos/lumpy_pudding.png')
     },
     {
       id: 'nono',
+      filename: 'nono.png',
       name: 'Nono',
       path: require('~/assets/img/tolos/nono.png')
     },
     {
       id: 'orx',
+      filename: 'orx.png',
       name: 'Orx',
       path: require('~/assets/img/tolos/orx.png')
     },
     {
       id: 'panglima',
+      filename: 'panglima.png',
       name: 'Panglima',
       path: require('~/assets/img/tolos/panglima.png')
     },
     {
       id: 'peddy',
+      filename: 'peddy.png',
       name: 'Peddy',
       path: require('~/assets/img/tolos/peddy.png')
     },
     {
       id: 'slom',
+      filename: 'slom.png',
       name: 'Slom',
       path: require('~/assets/img/tolos/slom.png')
     },
     {
       id: 'yambil',
+      filename: 'yambil.png',
       name: 'Yambil',
       path: require('~/assets/img/tolos/yambil.png')
     },

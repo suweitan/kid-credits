@@ -86,35 +86,6 @@ import { v4 as uuidv4 } from 'uuid'
 import { required } from 'vuelidate/lib/validators'
 
 export default {
-  // mounted() {
-  //   let storageRef = this.$fireStorage.ref('images/creatures')
-    
-  //   storageRef.listAll().then(res => {
-  //     res.items.forEach(itemRef => {
-
-  //       console.log('item: ')
-  //       console.log(itemRef)
-
-  //       const name = itemRef.name.split('.').slice(0, -1).join('.') 
-  //       const fullPath = itemRef.fullPath
-
-  //       itemRef.getDownloadURL().then(url => {
-  //         this.creatures.push({
-  //           url: url,
-  //           name: name, 
-  //           fullPath: fullPath
-  //         })
-
-  //         console.log('push file')
-  //         console.log(this.creatures)
-  //       })
-  //       .catch(err => console.error(err))
-
-  //     });
-  //   }).catch(error => {
-  //     console.error('Oops, something went wrong!')
-  //   });
-  // },
   data: () => ({
     errors: false,
     formTouched: false, 

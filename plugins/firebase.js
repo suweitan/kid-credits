@@ -33,10 +33,8 @@ export default (context, inject) => {
   
   fireAuth.onAuthStateChanged(user => {
     if (user) {
-      console.log('User changed ... ')
       store.commit('setUser', user)
     } else {
-      console.log('User logout ')
       store.commit('removeUser') 
     } 
   })

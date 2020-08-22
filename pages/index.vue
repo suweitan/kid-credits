@@ -1,5 +1,5 @@
 <template>
-  <div v-if="kids" class="mt-10 mx-auto max-w-md">
+  <div v-if="kids" class="mt-16 mx-auto max-w-md">
     <div v-for="(k,index) in kids" :key="index" class="w-full mt-5 border-4 border-green-100 rounded-lg overflow-hidden shadow-2xl">
       <div class="w-full flex items-center justify-center" :style="{ backgroundColor: k.color }">
         <nuxt-link 
@@ -7,9 +7,9 @@
           :to="k._path">
           <div class="w-1/3 flex justify-center">
             <img 
-              v-if="k.creature && k.creature.path"
+              v-if="k.avatar"
               class="p-2 mx-3 h-16 w-16 bg-gray-100 shadow-lg rounded-full"     
-              :src="k.creature.path" />
+              :src="k.avatar" />
             <div  
               v-else
               class="p-2 mx-3 h-16 w-16 text-white bg-gray-500 shadow-lg rounded-full flex items-center justify-center">
@@ -44,8 +44,7 @@
         </div> -->
       </div>
     </div>
-    
-    <vue-tailwind-modal
+    <modal
       :showing="showModal"
       @close="updateCreditDone"
       :showClose="true"
@@ -74,10 +73,6 @@
           </p>
         </div>
 
-        <!-- <div v-if="loading" class="w-100 h-100 flex items-center justify-center">
-          <double-bounce></double-bounce>
-        </div> 
-        <div v-else> -->
         <div>
           <div v-for="(c,index) in credits" :key="index">
             <div 
@@ -94,27 +89,30 @@
           </div>
 
           <div v-if="selectedCredit" class="mt-16 flex items-center justify-center">
-            <button @click.prevent="updateCredit()" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-full focus:outline-none focus:shadow-outline text-center" type="button">
+            <button @click.prevent="updateCredit()" class="w-full bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-full focus:outline-none focus:shadow-outline text-center inline-flex items-center justify-center" type="button">
+              <svg v-if="loading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
               UPDATE
             </button>
           </div>
         </div>
       
       </div>
-    </vue-tailwind-modal>
-
+    </modal>
   </div>
 </template>
 
 <script>
 import config from '../config'
 import { formatDate } from '../utils/date'
-import VueTailwindModal from 'vue-tailwind-modal'
+import Modal from '../components/Modal'
 // import { DoubleBounce } from 'vue-loading-spinner'
 
 export default {
   components: {
-    VueTailwindModal, 
+    Modal, 
     // DoubleBounce
   }, 
   created() {
@@ -127,6 +125,10 @@ export default {
       
       for (let [key, value] of Object.entries(kids)) {
         value._path = `/kids/${value.id}`
+
+        let filename = value.creature.filename || `${value.creature.name}.png`
+
+        value.avatar = require(`~/assets/img/tolos/${filename}`)
 
         this.kids.push(value)
       }
@@ -206,29 +208,13 @@ export default {
         (error) => {
           if (error) {
             console.error(error)
-          } else {
-            console.log('kid updated')
-          }
+          } 
         }
       )
       .finally(() => {
         this.loading = false 
         this.updateCreditDone()
       })
-      // this.loading = true
-      // this.$fireDb.ref('kids/' + this.selectedKid.id).set({
-      //   ...this.selectedKid 
-      // }, (error) => {
-      //   if (error) {
-      //     console.error(error)
-      //   } else {
-      //     console.log('kid updated')
-      //   }
-      // })
-      // .finally(() => {
-      //   this.loading = false 
-      //   this.updateCreditDone()
-      // })
     },
     addPoint(kid) {
       kid.currCredit ++

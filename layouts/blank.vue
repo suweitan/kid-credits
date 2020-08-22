@@ -1,6 +1,6 @@
 <template>
   <div>
-    <main class="h-screen bg-gray-700">
+    <main class="h-screen bg-indigo-800">
       <Nuxt />
     </main>
   </div>
