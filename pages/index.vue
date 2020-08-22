@@ -1,47 +1,49 @@
 <template>
-  <div v-if="kids" class="mt-16 mx-auto max-w-md">
-    <div v-for="(k,index) in kids" :key="index" class="w-full mt-5 border-4 border-green-100 rounded-lg overflow-hidden shadow-2xl">
-      <div class="w-full flex items-center justify-center" :style="{ backgroundColor: k.color }">
-        <nuxt-link 
-           class="w-4/6 text-white flex items-center"
-          :to="k._path">
-          <div class="w-1/3 flex justify-center">
-            <img 
-              v-if="k.avatar"
-              class="p-2 mx-3 h-16 w-16 bg-gray-100 shadow-lg rounded-full"     
-              :src="k.avatar" />
-            <div  
-              v-else
-              class="p-2 mx-3 h-16 w-16 text-white bg-gray-500 shadow-lg rounded-full flex items-center justify-center">
-              ?
+  <div class="pt-6 pb-10 mx-auto max-w-md">
+    <div v-if="kids" class="px-3 sm:px-0 overflow-auto">
+      <div v-for="(k,index) in kids" :key="index" class="w-full mt-5 border-4 border-green-100 rounded-lg overflow-hidden shadow-2xl">
+        <div class="px-2 sm:px-0 w-full flex items-center justify-center" :style="{ backgroundColor: k.color }">
+          <nuxt-link 
+            class="w-4/6 text-white flex items-center"
+            :to="k._path">
+            <div class="w-1/3 flex justify-center">
+              <img 
+                v-if="k.avatar"
+                class="p-2 mx-2 sm:mx-3 h-12 w-12 sm:h-16 sm:w-16 bg-gray-100 shadow-lg rounded-full"     
+                :src="k.avatar" />
+              <div  
+                v-else
+                class="p-2 mx-2 sm:mx-3 h-12 w-12 sm:h-16 sm:w-16 text-white bg-gray-500 shadow-lg rounded-full flex items-center justify-center">
+                ?
+              </div>
             </div>
-          </div>
 
-          <div class="flex-1 py-2 flex flex-col justify-center">
-            <p class="text-center font-semibold text-lg">{{ k.name }}</p>
-            <p class="leading-none text-6xl font-bold text-center">{{ k.currCredit }}</p>
-            <p class="text-center font-normal text-base text-white text-opacity-75">points</p>
+            <div class="flex-1 py-2 flex flex-col justify-center">
+              <p class="text-center font-semibold text-lg">{{ k.name }}</p>
+              <p class="leading-none text-5xl sm:text-6xl font-bold text-center">{{ k.currCredit }}</p>
+              <p class="text-center font-normal text-base text-white text-opacity-75">points</p>
+            </div>
+          </nuxt-link>
+          <div class="w-2/6 py-3 flex flex-col items-center justify-center">
+            <button @click="showUpdateCredit(k, 'earn')" type="button" class="w-20 sm:w-24 bg-green-500 hover:bg-green-700 focus:outline-none border-2 border-white text-white font-bold py-2 px-3 sm:px-4 rounded-full">
+              earn
+            </button>
+            <button @click="showUpdateCredit(k, 'spend')" type="button" class="my-2 w-20 sm:w-24 bg-orange-500 hover:bg-orange-700 focus:outline-none border-2 border-white text-white font-bold py-2 px-3 sm:px-4 rounded-full">
+              spend
+            </button>
+            <button @click="showUpdateCredit(k, 'deduct')" type="button" class="w-20 sm:w-24 bg-red-500 hover:bg-red-700 focus:outline-none border-2 border-white text-white font-bold py-2 px-3 sm:px-4 rounded-full">
+              deduct  
+            </button>
           </div>
-        </nuxt-link>
-        <div class="w-2/6 py-3 flex flex-col items-center justify-center">
-          <button @click="showUpdateCredit(k, 'earn')" type="button" class="w-24 bg-green-500 hover:bg-green-700 focus:outline-none border-2 border-white text-white font-bold py-2 px-4 rounded-full">
-            earn
-          </button>
-          <button @click="showUpdateCredit(k, 'spend')" type="button" class="my-2 w-24 bg-orange-500 hover:bg-orange-700 focus:outline-none border-2 border-white text-white font-bold py-2 px-4 rounded-full">
-            spend
-          </button>
-          <button @click="showUpdateCredit(k, 'deduct')" type="button" class="w-24 bg-red-500 hover:bg-red-700 focus:outline-none border-2 border-white text-white font-bold py-2 px-4 rounded-full">
-            deduct  
-          </button>
+          <!-- <div class="w-2/6 border-l border-white">
+            <div @click="addPoint(k)" class="text-white border-b border-white flex items-center justify-center font-hairline text-6xl cursor-pointer">
+              +
+            </div>
+            <div @click="minusPoint(k)" class="text-white flex items-center justify-center font-hairline text-6xl cursor-pointer">
+              &ndash;
+            </div>
+          </div> -->
         </div>
-        <!-- <div class="w-2/6 border-l border-white">
-          <div @click="addPoint(k)" class="text-white border-b border-white flex items-center justify-center font-hairline text-6xl cursor-pointer">
-            +
-          </div>
-          <div @click="minusPoint(k)" class="text-white flex items-center justify-center font-hairline text-6xl cursor-pointer">
-            &ndash;
-          </div>
-        </div> -->
       </div>
     </div>
     <modal
@@ -49,7 +51,7 @@
       @close="updateCreditDone"
       :showClose="true"
     >
-      <div class="p-5">
+      <div class="py-5 px-3 sm:px-5 overflow-auto">
         <div v-if="! loading && selectedKid" class="mb-8 w-100 flex items-center justify-center">
           <div class="w-24 h-24 bg-gray-400 text-white rounded-lg flex items-center justify-center">
             <span class="text-4xl font-bold">{{ selectedKid.currCredit }}</span>

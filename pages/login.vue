@@ -1,5 +1,5 @@
 <template>
-<div class="h-full w-full mx-auto flex flex-col justify-center items-center">
+<div class="h-full w-full py-5 mx-auto flex flex-col justify-center items-center">
   <div class="h-16 w-16">
     <img class="h-full w-full" src="~/assets/img/logo.png" />
   </div>
