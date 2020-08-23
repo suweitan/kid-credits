@@ -54,17 +54,19 @@
     >
       <div class="h-full mt-5 pt-5 pb-32 sm:pb-10 px-3 sm:px-5 flex flex-col">
         <div v-if="! loading && selectedKid" class="mb-8 w-100 flex items-center justify-center">
-          <div class="w-24 h-24 bg-gray-400 text-white rounded-lg flex items-center justify-center">
-            <span class="text-4xl font-bold">{{ selectedKid.currCredit }}</span>
+          <div class="w-12 sm:w-16 h-12 sm:h-16 bg-gray-400 text-white rounded-lg flex items-center justify-center">
+            <span class="text-3xl sm:text-4xl font-bold">{{ selectedKid.currCredit }}</span>
           </div>
           <svg class="mx-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 64 64"><title>arrow-right-3</title><g stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"><path fill="none" stroke="currentColor" stroke-miterlimit="10" d="M60,32L32,10v14H12 c-4.4,0-8,3.6-8,8v0c0,4.4,3.6,8,8,8h20v14L60,32z"></path></g></svg>
-          <div @click.prevent="updateCredit()" :style="{ cursor: selectedCredit ? 'pointer' : 'default' } " :class="selectedCreditTypeClass" class="w-24 h-24 text-white rounded-lg flex items-center justify-center">
+          <div 
+            :class="selectedCreditTypeClass" 
+            class="w-16 sm:w-24 h-16 sm:h-24 text-white rounded-lg flex items-center justify-center">
             <span class="text-5xl font-bold">{{ newCredit }}</span>
           </div>
         </div>
         <p class="mb-3 text-lg font-bold">Update {{ selectedKidName }}'s Credit</p> 
 
-        <div class="my-3">
+        <div class="my-2 sm:my-3">
           <p v-if="selectedCreditType === 'earn'" class="text-gray-700 text-sm">
             <span class="capitalize">{{ selectedKidName }}</span> has done something right. Give {{ selectedKidName }} some credits. 
           </p>
@@ -76,12 +78,12 @@
           </p>
         </div>
         <div v-if="selectedCredit" class="my-5 flex items-center justify-center">
-          <button @click.prevent="updateCredit()" class="w-full bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-full focus:outline-none focus:shadow-outline text-center inline-flex items-center justify-center" type="button">
-            <svg v-if="loading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <button @click.prevent="updateCredit()" class="w-full bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 sm:py-3 px-4 rounded-full focus:outline-none focus:shadow-outline text-center inline-flex items-center justify-center" type="button">
+            <svg v-if="loading" class="animate-spin -ml-1 mr-3 h-4 sm:h-5 w-4 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            UPDATE
+            <span class="text-sm sm:text-lg">UPDATE</span>
           </button>
         </div>
 
@@ -91,12 +93,12 @@
               v-if="c.type === selectedCreditType"
               :class="selectedCreditTypeClass"
               @click="selectedCredit = c"
-              class="mb-3 px-4 py-2 cursor-pointer font-medium text-white rounded-lg flex items-center justify-between">
-              <span class="flex-1 flex items-center leading-tight">
-                <svg v-if="selectedCredit && selectedCredit.id === c.id" class="mr-2" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>o-check</title><g stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"><polygon fill="none" stroke="currentColor" stroke-miterlimit="10" points="4,30 10,24 24,34 54,10 60,14 24,52 "></polygon></g></svg>
+              class="mb-3 px-4 py-1 sm:py-2 cursor-pointer font-medium text-white rounded-lg flex items-center justify-between">
+              <span class="text-sm sm:text-lg flex-1 flex items-center leading-tight">
+                <svg v-if="selectedCredit && selectedCredit.id === c.id" class="mr-2 fill-current h-4 sm:h-5 w-4 sm:w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>o-check</title><g><path d="M54.6,9.2c-0.4-0.2-0.8-0.2-1.2,0.1L24,32.7l-13.4-9.6c-0.4-0.3-0.9-0.2-1.3,0.1l-6,6c-0.4,0.4-0.4,1,0,1.4 l20,22c0.2,0.2,0.5,0.3,0.7,0.3c0,0,0,0,0,0c0.3,0,0.5-0.1,0.7-0.3l36-38c0.2-0.2,0.3-0.5,0.3-0.8s-0.2-0.6-0.4-0.7L54.6,9.2z"></path></g></svg>
                 {{ c.name }}
               </span>
-              <span class="w-1/6 text-2xl font-bold text-right">{{ c.sign * c.credit }}</span>
+              <span class="w-1/6 text-xl sm:text-2xl font-bold text-right">{{ c.sign * c.credit }}</span>
             </div>
           </div>
         </div>
@@ -208,7 +210,7 @@ export default {
         updates, 
         (error) => {
           if (error) {
-            console.error(error)
+            alert(error)
           } 
         }
       )
@@ -223,7 +225,7 @@ export default {
       this.$fireDb.ref('kids/' + kid.id).set({
         ...kid 
       })
-      .catch(err => console.error(err))
+      .catch(err => alert(err))
 
     },
     minusPoint(kid) {
@@ -232,7 +234,7 @@ export default {
       this.$fireDb.ref('kids/' + kid.id).set({
         ...kid 
       })
-      .catch(err => console.error(err))
+      .catch(err => alert(err))
     }
   }
 }

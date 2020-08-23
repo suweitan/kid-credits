@@ -208,7 +208,7 @@ export default {
         this.loading = true 
 
         this.$fireDb.ref('kids/' + kid.id).set(kid)
-          .catch(err => console.error(err))
+          .catch(err => alert(err))
 
         this.$fireDb.ref('kids/' + kid.id).once('value', snapshot => {
           this.$router.push({ path: '/' })

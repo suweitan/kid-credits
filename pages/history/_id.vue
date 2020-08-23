@@ -40,7 +40,7 @@
         <p class="mb-3 text-red-700 text-lg font-bold">Delete Credit?</p> 
         <p class="text-red-500">This action cannot be undone!</p>
         <div class="mt-16 flex items-center justify-center">
-          <button @click.prevent="deleteCredit()" class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-full focus:outline-none focus:shadow-outline-red text-center" type="button">
+          <button @click.prevent="updateCredit" class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-full focus:outline-none focus:shadow-outline-red text-center" type="button">
             DELETE
           </button>
         </div>
@@ -64,21 +64,27 @@ export default {
     this.movementRef = this.$fireDb.ref(`movements/${this.kidId}`)
 
     this.movementRef.orderByKey().on('value', (snapshot) => {
-          let movements = []
+      if (! snapshot.val()) {
+        this.movements = []
 
-          for (const [day,records] of Object.entries(snapshot.val())) {
-            let values = []
-            movements.unshift({
-              day: this.formatDay(day), 
-              items: Object.values(records).map(value => {
-                value.createdAt = (new Date(value.created_at)).toLocaleTimeString()
-                return value
-              }).reverse()
-            })
-          }          
+        return 
+      } 
+      
+      let movements = []
 
-          this.movements = [... movements]
+      for (const [day,records] of Object.entries(snapshot.val())) {
+        let values = []
+        movements.unshift({
+          day: this.formatDay(day), 
+          items: Object.values(records).map(value => {
+            value.createdAt = (new Date(value.created_at)).toLocaleTimeString()
+            return value
+          }).reverse()
         })
+      }          
+
+      this.movements = [... movements]
+    })
 
     this.$fireDb
         .ref(`kids/${this.kidId}`)
@@ -111,6 +117,7 @@ export default {
     back() {
       this.$router.push('/')
     },
+
     formatDay(dateString) {
       let year = dateString.substring(0,4)
       let month = dateString.substring(4,6)
@@ -118,13 +125,44 @@ export default {
 
       return (new Date(year, month-1, day)).toLocaleDateString()
     },
+
     toggleEdit() {
       this.canEdit = ! this.canEdit
     },
+
     promptDelete(item) {
       this.showDeleteModal = true 
       this.selectedCredit = item 
     },
+
+    updateCredit() {
+      if (! this.selectedCredit) return 
+
+      this.kid.currCredit -= this.selectedCredit.credit
+
+      let day = formatDate(new Date(this.selectedCredit.created_at))
+
+      let updates = {}
+      
+      updates['kids/'+this.kid.id] = { ...this.kid }
+      updates[`movements/${this.kidId}/${day}/${this.selectedCredit.created_at}`] = null
+
+      this.loading = true
+      this.$fireDb.ref().update(
+        updates, 
+        (error) => {
+          if (error) {
+            alert(error)
+          } 
+        }
+      )
+      .catch(error => alert(error))
+      .finally(() => {
+        this.loading = false 
+        this.showDeleteModal = false
+      })
+    },
+
     deleteCredit() {
       if (! this.selectedCredit) return 
 
@@ -138,6 +176,7 @@ export default {
 
       this.showDeleteModal = false
     },
+
     promptDeleteDone() {
       this.selectedCredit = null
 

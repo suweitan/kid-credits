@@ -16,7 +16,7 @@
 					@click.prevent="close"
 				>
           <div class="p-2 bg-gray-200 rounded-full text-gray-700">
-					  <svg class="fill-current" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>e-remove</title><g><polygon points="49.678 10.08 32 27.758 14.322 10.08 10.08 14.322 27.758 32 10.08 49.678 14.322 53.92 32 36.242 49.678 53.92 53.92 49.678 36.242 32 53.92 14.322 49.678 10.08"></polygon></g></svg>
+					  <svg class="fill-current h-4 sm:h-5 w-4 sm:w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>e-remove</title><g><polygon points="49.678 10.08 32 27.758 14.322 10.08 10.08 14.322 27.758 32 10.08 49.678 14.322 53.92 32 36.242 49.678 53.92 53.92 49.678 36.242 32 53.92 14.322 49.678 10.08"></polygon></g></svg>
           </div>
 				</button>
 				<div class="max-h-screen w-full">
