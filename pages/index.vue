@@ -108,18 +108,28 @@
 </template>
 
 <script>
-import config from '../config'
 import { formatDate } from '../utils/date'
 import Modal from '../components/Modal'
-// import { DoubleBounce } from 'vue-loading-spinner'
 
 export default {
   components: {
     Modal, 
-    // DoubleBounce
   }, 
   created() {
-    this.credits = config.credits
+    this.$fireDb.ref(`credits`).orderByKey().on('value', (snapshot) => {
+      if (! snapshot.val()) {
+        this.credits = []
+
+        return 
+      } 
+      
+      let credits = []
+      for (const [slug,credit] of Object.entries(snapshot.val())) {
+        credits.push(credit)
+      }     
+      
+      this.credits = credits
+    })
 
     let kidsRef = this.$fireDb.ref('kids')
 
