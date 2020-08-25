@@ -89,11 +89,11 @@
 </template>
 
 <script>
-import DropDown from '../components/DropDown'
+import Dropdown from '../components/Dropdown'
 
 export default {
   components: {
-    DropDown
+    Dropdown
   },
   data: () => ({
     isOpen: false,
