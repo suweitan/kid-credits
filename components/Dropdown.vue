@@ -5,7 +5,11 @@
              aria-haspopup="true"
              :aria-expanded="isOpen"
         >
-            <slot name="trigger"></slot>
+            <slot name="trigger">
+                <button class="px-2 py-2 rounded focus:outline-none text-white hover:bg-indigo-800">
+                  <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 64 64"><title>menu-5</title><g><circle cx="8" cy="32" r="6"></circle> <circle cx="32" cy="32" r="6"></circle> <circle cx="56" cy="32" r="6"></circle></g></svg>
+                </button>
+            </slot>
         </div>
 
         <transition name="pop-out-quick">

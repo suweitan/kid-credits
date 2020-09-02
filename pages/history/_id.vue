@@ -21,7 +21,7 @@
         <div v-for="(item,j) in m.items" :key="j" class="mt-2 mb-3 px-5 py-2 border border-gray-100 bg-indigo-600 hover:bg-indigo-800 rounded-lg flex items-center justify-between">
           <div>
             <p class="text-xs text-teal-200 italic">{{ item.createdAt }}</p>
-            <p class="font-bold">{{ item.description }}</p>
+            <p class="font-bold">{{ item.description }} <span class="ml-2 px-2 text-xs text-gray-800 bg-yellow-300 rounded-full">&times; {{ item.quantity }}</span></p>
           </div>
           <div class="flex items-center">
             <span class="text-3xl font-bold">{{ item.credit }}</span>
@@ -77,6 +77,8 @@ export default {
         movements.unshift({
           day: this.formatDay(day), 
           items: Object.values(records).map(value => {
+            value.quantity = value.quantity || 1 
+
             value.createdAt = (new Date(value.created_at)).toLocaleTimeString()
             return value
           }).reverse()

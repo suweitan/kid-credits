@@ -13,11 +13,15 @@
           </div>
           <div class="hidden md:block">
             <dropdown>
-              <template v-slot:trigger>
+              <!-- <template v-slot:trigger>
                 <button class="px-2 py-2 rounded focus:outline-none text-white hover:bg-indigo-800">
                   <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 64 64"><title>menu-5</title><g><circle cx="8" cy="32" r="6"></circle> <circle cx="32" cy="32" r="6"></circle> <circle cx="56" cy="32" r="6"></circle></g></svg>
                 </button>
-              </template>
+              </template> -->
+              <nuxt-link v-if="isDev" to="/kids" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 cursor-pointer flex items-center">
+                <svg class="mr-3 h-6 w-6" viewBox="0 0 48 48"><title>kid</title><g><path d="M26,45A21,21,0,1,1,47,24,21.024,21.024,0,0,1,26,45Z" fill="#ffd764"></path> <path d="M26.058,39a9.025,9.025,0,0,1-7.809-4.536,1,1,0,0,1,1.736-.994,6.989,6.989,0,0,0,12.146,0,1,1,0,0,1,1.737.994A9.028,9.028,0,0,1,26.058,39Z" fill="#444"></path> <circle cx="35" cy="24" r="3" fill="#444"></circle> <circle cx="17" cy="24" r="3" fill="#444"></circle> <path d="M42.072,19H.928a1,1,0,0,1,0-2H42.072a1,1,0,0,1,0,2Z" fill="#a56edc"></path> <path d="M5.627,19H46.373A20.971,20.971,0,0,0,5.627,19Z" fill="#a56edc"></path></g></svg>
+                Add Kid
+              </nuxt-link>
               <nuxt-link to="/credits" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 cursor-pointer flex items-center">
                 <svg class="mr-3 h-6 w-6" viewBox="0 0 48 48"><title>gold-coin</title><g><circle cx="24" cy="24" r="23" fill="#f8d34c"></circle><path d="M24,3A21,21,0,1,0,45,24,21,21,0,0,0,24,3Zm0,40A19,19,0,1,1,43,24,19,19,0,0,1,24,43Z" fill="#bb991d"></path><path d="M24,40a1,1,0,0,1-1-1V36a1,1,0,0,1,2,0v3A1,1,0,0,1,24,40Z" fill="#bb991d"></path><path d="M39.217,28.944a1,1,0,0,1-1.26.642L35.1,28.659a1,1,0,1,1,.618-1.9l2.853.927A1,1,0,0,1,39.217,28.944Z" fill="#bb991d"></path><path d="M33.405,11.056a1,1,0,0,1,.221,1.4L31.862,14.88A1,1,0,0,1,30.244,13.7l1.764-2.427A1,1,0,0,1,33.405,11.056Z" fill="#bb991d"></path><path d="M14.6,11.056a1,1,0,0,1,1.4.221L17.756,13.7a1,1,0,0,1-1.618,1.176l-1.764-2.427A1,1,0,0,1,14.6,11.056Z" fill="#bb991d"></path><path d="M8.783,28.944a1,1,0,0,1,.642-1.26l2.853-.927a1,1,0,1,1,.618,1.9l-2.853.927A1,1,0,0,1,8.783,28.944Z" fill="#bb991d"></path><path d="M30.181,33.478a.992.992,0,0,1-.465-.116l-5.716-3-5.716,3a1,1,0,0,1-1.45-1.053l1.092-6.365L13.3,21.438a1,1,0,0,1,.554-1.706l6.39-.928,2.858-5.79a1.039,1.039,0,0,1,1.792,0l2.858,5.79,6.39.928a1,1,0,0,1,.554,1.706l-4.624,4.506,1.092,6.365a1,1,0,0,1-.985,1.169Z" fill="#bb991d"></path></g></svg>
                 Credit Setting 
@@ -98,12 +102,15 @@ export default {
   data: () => ({
     isOpen: false,
     today: '', 
+    isDev: false 
   }),
   created() {
     let date = new Date()
     let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
     this.today = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
+
+    this.isDev = process.env.NODE_ENV === 'development'
   }, 
   computed: {
     user() {
