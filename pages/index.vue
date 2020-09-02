@@ -56,7 +56,7 @@
           <div 
             :class="selectedCreditTypeClass" 
             class="w-16 sm:w-24 h-16 sm:h-24 text-white rounded-lg flex items-center justify-center">
-            <span class="text-5xl font-bold">{{ newCredit }}</span>
+            <span class="text-4xl sm:text-5xl font-bold">{{ newCredit }}</span>
           </div>
         </div>
         <p class="mb-3 text-lg font-bold">Update {{ selectedKidName }}'s Credit</p> 
